@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h2 class="text-center">My Todo List Angular</h2>
+        <form (submit)="add_todo()">
+          <div class="form-group">
+            <label for="id_todo">To Do Title </label>
+            <input type="text" [(ngModel)]="todo_value" class="form-control" id="id_todo" name="id_todo" />
+          </div>
+          <button type="button" (click)="add_todo()" class="btn btn-primary pull-right">Add New</button>
+        </form>
+    </div>
+  </div>
+
+  <!-- display toto list -->
+  <div *ngIf="todo_list && todo_list.length > 0" class="row mt20">
+    <div class="col-xs-6 col-xs-offset-3">
+      <ul class="list-group checked-list-box">
+        <li *ngFor="let x of todo_list" role="button" class="list-group-item {{ x.done ? 'active' : '' }}" (click)="x.done = !x.done">
+          {{ x.todoText }}
+        </li>
+      </ul>
+
+      <button class="btn btn-info" (click)="select_all()">All</button>
+      <button class="btn btn-info" (click)="select_none()">None</button>
+
+      <button class="btn btn-danger pull-right" (click)="remove_todo()">Remove Selected</button>
+    </div>
+  </div>
+</div>
